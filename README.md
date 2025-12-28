@@ -35,6 +35,7 @@ Gestion_Deportiva/
 ├── models/
 │   ├── Entrenamiento.php
 │   └── Usuario.php
+├── public/
 ├── views/
 │   ├── auth/
 │   │   ├── login.php
