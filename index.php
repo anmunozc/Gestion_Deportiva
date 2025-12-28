@@ -36,10 +36,10 @@ switch ($action) {
         break;
 
     case 'guardar_entrenamiento':
-        AuthController::verificarSesion();
-        $controller = new EntrenamientoController();
-        $controller->guardar();
-        break;
+    $controller = new EntrenamientoController($db);
+    $controller->guardar();
+    break;
+
 
     default:
         require_once "views/auth/login.php";
