@@ -18,10 +18,11 @@ Este sistema es un **Producto Mínimo Viable (MVP)** diseñado para digitalizar 
 - **Arquitectura de Capas:** Separación clara entre Presentación (Frontend), Negocio (Backend) y Datos.
 
 ## 🛠️ Tecnologías Utilizadas
-- **Backend:** Python 3.x con el micro-framework **Flask**.
-- **Base de Datos:** **MySQL** (Gestionado a través de XAMPP).
-- **Frontend:** HTML5, CSS3 y **Bootstrap 5** (Diseño responsivo y profesional).
-- **Entorno de Desarrollo:** Visual Studio Code.
+- **Backend:** PHP 8 (Arquitectura MVC)
+- **Base de datos:** MySQL
+- **Frontend:** HTML5, CSS3, Bootstrap
+- **Entorno de desarrollo:** XAMPP, Visual Studio Code
+- **Control de versiones:** GitHub
 
 ## 📁 Estructura del Proyecto
 ```text
