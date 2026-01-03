@@ -1,23 +1,14 @@
 <?php
+require_once "../../controllers/AuthController.php";
 session_start();
 
-if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'entrenador') {
-    header("Location: index.php");
-    exit;
-}
+AuthController::verificarSesion();
+AuthController::verificarRol('entrenador');
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Registrar Entrenamiento</title>
-</head>
-<body>
 
 <h2>Registrar Entrenamiento</h2>
 
-<form method="POST" action="index.php?action=guardar_entrenamiento">
+<form method="POST" action="../../index.php?action=guardar_entrenamiento">
 
     <label>Fecha</label><br>
     <input type="date" name="fecha" required><br><br>
@@ -42,11 +33,4 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'entrenador'
     <textarea name="observaciones"></textarea><br><br>
 
     <button type="submit">Guardar entrenamiento</button>
-
 </form>
-
-<br>
-<a href="index.php?action=panel_entrenador">⬅ Volver al panel</a>
-
-</body>
-</html>

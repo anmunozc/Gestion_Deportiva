@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'entrenador') {
-    header("Location: index.php");
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,16 +19,15 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] !== 'entrenador'
     </tr>
 
     <?php while ($row = $lista->fetch(PDO::FETCH_ASSOC)) : ?>
-        <tr>
-            <td><?= $row['fecha'] ?></td>
-            <td><?= $row['duracion'] ?></td>
-            <td><?= $row['distancia'] ?></td>
-            <td><?= $row['tipo_entrenamiento'] ?></td>
-            <td><?= $row['sensacion'] ?></td>
-            <td><?= $row['observaciones'] ?></td>
-        </tr>
+    <tr>
+        <td><?= $row['fecha'] ?></td>
+        <td><?= $row['duracion'] ?></td>
+        <td><?= $row['distancia'] ?></td>
+        <td><?= $row['tipo_entrenamiento'] ?></td>
+        <td><?= $row['sensacion'] ?></td>
+        <td><?= $row['observaciones'] ?></td>
+    </tr>
     <?php endwhile; ?>
-
 </table>
 
 <br>

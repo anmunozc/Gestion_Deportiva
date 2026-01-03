@@ -1,24 +1,28 @@
 <?php
 
-class Usuario {
+class Entrenamiento {
+
     private $conn;
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
-    public function login($email, $password) {
-        $query = "SELECT * FROM usuarios WHERE email = :email LIMIT 1";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":email", $email);
+    public function guardar($datos) {
+        $sql = "INSERT INTO entrenamientos 
+        (usuario_id, fecha, duracion, distancia, tipo_entrenamiento, sensacion, observaciones)
+        VALUES 
+        (:usuario_id, :fecha, :duracion, :distancia, :tipo_entrenamiento, :sensacion, :observaciones)";
+
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute($datos);
+    }
+
+    public function obtenerPorUsuario($usuario_id) {
+        $sql = "SELECT * FROM entrenamientos WHERE usuario_id = :id ORDER BY fecha DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $usuario_id);
         $stmt->execute();
-
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($usuario && hash('sha256', $password) === $usuario['password']) {
-            return $usuario;
-        }
-
-        return false;
+        return $stmt;
     }
 }

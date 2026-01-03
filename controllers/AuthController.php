@@ -1,5 +1,6 @@
 <?php
-require_once "models/Usuario.php";
+
+require_once $_SERVER['DOCUMENT_ROOT'] . "/Gestion_Deportiva/models/Usuario.php";
 
 class AuthController {
 
@@ -20,14 +21,14 @@ class AuthController {
             if ($resultado['rol'] === 'entrenador') {
                 header("Location: index.php?action=panel_entrenador");
                 exit;
+            } else {
+                header("Location: index.php?action=panel_atleta");
+                exit;
             }
-
-            header("Location: index.php");
+        } else {
+            header("Location: index.php?error=1");
             exit;
         }
-
-        header("Location: index.php?error=1");
-        exit;
     }
 
     public static function verificarSesion() {
