@@ -5,7 +5,7 @@ require_once "config/database.php";
 require_once "controllers/AuthController.php";
 require_once "controllers/EntrenamientoController.php";
 
-// Conexión DB
+// Conexión única
 $database = new Database();
 $db = $database->getConnection();
 
@@ -21,7 +21,7 @@ switch ($action) {
     case 'logout':
         session_destroy();
         header("Location: index.php");
-        exit;
+        break;
 
     case 'panel_entrenador':
         AuthController::verificarSesion();
@@ -36,14 +36,14 @@ switch ($action) {
         break;
 
     case 'guardar_entrenamiento':
-    $controller = new EntrenamientoController($db);
-    $controller->guardar();
-    break;
+        $controller = new EntrenamientoController($db);
+        $controller->guardar();
+        break;
 
     case 'ver_entrenamientos':
-    $controller = new EntrenamientoController($db);
-    $controller->verEntrenamientos();
-    break;
+        $controller = new EntrenamientoController($db);
+        $controller->verEntrenamientos();
+        break;
 
     default:
         require_once "views/auth/login.php";

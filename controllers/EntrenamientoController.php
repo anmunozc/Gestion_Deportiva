@@ -1,22 +1,18 @@
 <?php
 require_once "models/Entrenamiento.php";
-require_once "config/database.php";
+require_once "controllers/AuthController.php";
 
 class EntrenamientoController {
 
-    private $db;
+    private $entrenamiento;
 
     public function __construct($db) {
-        $this->db = $db;
+        $this->entrenamiento = new Entrenamiento($db);
     }
 
     public function guardar() {
-        session_start();
-
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php");
-            exit;
-        }
+        AuthController::verificarSesion();
+        AuthController::verificarRol('entrenador');
 
         $datos = [
             'usuario_id' => $_SESSION['usuario']['id'],
@@ -28,24 +24,19 @@ class EntrenamientoController {
             'observaciones' => $_POST['observaciones']
         ];
 
-        $entrenamiento = new Entrenamiento($this->db);
-        $entrenamiento->guardar($datos);
+        $this->entrenamiento->guardar($datos);
 
         header("Location: index.php?action=ver_entrenamientos");
         exit;
     }
 
     public function verEntrenamientos() {
-        session_start();
+        AuthController::verificarSesion();
+        AuthController::verificarRol('entrenador');
 
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php");
-            exit;
-        }
+        $lista = $this->entrenamiento
+                      ->obtenerPorUsuario($_SESSION['usuario']['id']);
 
-        $entrenamiento = new Entrenamiento($this->db);
-        $lista = $entrenamiento->obtenerPorUsuario($_SESSION['usuario']['id']);
-
-        require_once "views/entrenador/ver_entrenamientos.php";
+        require "views/entrenador/ver_entrenamientos.php";
     }
 }
