@@ -40,6 +40,10 @@ switch ($action) {
     $controller->guardar();
     break;
 
+    case 'ver_entrenamientos':
+    $controller = new EntrenamientoController($db);
+    $controller->verEntrenamientos();
+    break;
 
     default:
         require_once "views/auth/login.php";
