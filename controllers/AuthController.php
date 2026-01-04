@@ -1,6 +1,5 @@
 <?php
-
-require_once $_SERVER['DOCUMENT_ROOT'] . "/Gestion_Deportiva/models/Usuario.php";
+require_once __DIR__ . "/../models/Usuario.php";
 
 class AuthController {
 
@@ -27,20 +26,6 @@ class AuthController {
             }
         } else {
             header("Location: index.php?error=1");
-            exit;
-        }
-    }
-
-    public static function verificarSesion() {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php");
-            exit;
-        }
-    }
-
-    public static function verificarRol($rol) {
-        if ($_SESSION['usuario']['rol'] !== $rol) {
-            echo "Acceso no autorizado";
             exit;
         }
     }

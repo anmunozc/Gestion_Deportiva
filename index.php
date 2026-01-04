@@ -5,7 +5,6 @@ require_once "config/database.php";
 require_once "controllers/AuthController.php";
 require_once "controllers/EntrenamientoController.php";
 
-// Conexión única
 $database = new Database();
 $db = $database->getConnection();
 
@@ -18,20 +17,11 @@ switch ($action) {
         $auth->login($_POST['email'], $_POST['password']);
         break;
 
-    case 'logout':
-        session_destroy();
-        header("Location: index.php");
-        break;
-
     case 'panel_entrenador':
-        AuthController::verificarSesion();
-        AuthController::verificarRol('entrenador');
         require_once "views/entrenador/panel.php";
         break;
 
     case 'registrar_entrenamiento':
-        AuthController::verificarSesion();
-        AuthController::verificarRol('entrenador');
         require_once "views/entrenador/registrar_entrenamiento.php";
         break;
 
@@ -42,7 +32,8 @@ switch ($action) {
 
     case 'ver_entrenamientos':
         $controller = new EntrenamientoController($db);
-        $controller->verEntrenamientos();
+        $lista = $controller->verEntrenamientos();
+        require_once "views/entrenador/ver_entrenamientos.php";
         break;
 
     default:
