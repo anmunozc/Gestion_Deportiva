@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Historial de Entrenamientos</title>
-</head>
-<body>
-
 <h2>Historial de Entrenamientos</h2>
 
 <table border="1" cellpadding="6">
@@ -29,9 +21,3 @@
     </tr>
     <?php endwhile; ?>
 </table>
-
-<br>
-<a href="index.php?action=panel_entrenador">Volver al panel</a>
-
-</body>
-</html>

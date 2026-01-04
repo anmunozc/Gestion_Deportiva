@@ -1,6 +1,6 @@
 <?php
 
-class Entrenamiento {
+class Usuario {
 
     private $conn;
 
@@ -8,21 +8,26 @@ class Entrenamiento {
         $this->conn = $db;
     }
 
-    public function guardar($datos) {
-        $sql = "INSERT INTO entrenamientos 
-        (usuario_id, fecha, duracion, distancia, tipo_entrenamiento, sensacion, observaciones)
-        VALUES 
-        (:usuario_id, :fecha, :duracion, :distancia, :tipo_entrenamiento, :sensacion, :observaciones)";
-
+    public function login($email, $password) {
+        $sql = "SELECT * FROM usuarios WHERE email = :email LIMIT 1";
         $stmt = $this->conn->prepare($sql);
-        return $stmt->execute($datos);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario && hash('sha256', $password) === $usuario['password']) {
+            return $usuario;
+        }
+
+        return false;
     }
 
-    public function obtenerPorUsuario($usuario_id) {
-        $sql = "SELECT * FROM entrenamientos WHERE usuario_id = :id ORDER BY fecha DESC";
+    public function obtenerPorId($id) {
+        $sql = "SELECT * FROM usuarios WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $usuario_id);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
-        return $stmt;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
