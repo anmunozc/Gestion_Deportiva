@@ -1,9 +1,14 @@
 <?php
-require_once "../../controllers/AuthController.php";
-session_start();
+// Protección de ruta
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php");
+    exit;
+}
 
-AuthController::verificarSesion();
-AuthController::verificarRol('entrenador');
+if ($_SESSION['usuario']['rol'] !== 'entrenador') {
+    echo "Acceso no autorizado";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,14 +20,29 @@ AuthController::verificarRol('entrenador');
 <body>
 
 <h1>Panel del Entrenador</h1>
-<p>Bienvenida, <?= $_SESSION['usuario']['nombre'] ?></p>
+
+<p>
+    Bienvenido, <strong><?= $_SESSION['usuario']['nombre'] ?></strong>
+</p>
 
 <hr>
 
 <ul>
-    <li><a href="../../index.php?action=registrar_entrenamiento">Registrar entrenamiento</a></li>
-    <li><a href="../../index.php?action=ver_entrenamientos">Ver entrenamientos</a></li>
-    <li><a href="../../index.php?action=logout">Cerrar sesión</a></li>
+    <li>
+        <a href="index.php?action=registrar_entrenamiento">
+            Registrar entrenamiento
+        </a>
+    </li>
+    <li>
+        <a href="index.php?action=ver_entrenamientos">
+            Ver entrenamientos
+        </a>
+    </li>
+    <li>
+        <a href="index.php?action=logout">
+            Cerrar sesión
+        </a>
+    </li>
 </ul>
 
 </body>
