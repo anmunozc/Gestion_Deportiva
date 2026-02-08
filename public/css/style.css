@@ -1,0 +1,192 @@
+/* ==========================================================================
+   CSS BASE - PROYECTO DE TÍTULO: CLUB PATÍN CARRERA
+   ========================================================================== */
+
+/* 1. VARIABLES DE MARCA (Figma Colors) */
+:root {
+    --azul-pizarra: rgb(93, 109, 133);
+    --azul-oscuro: #4a5a70;
+    --gris-fondo: #f4f7fa;
+    --blanco: #ffffff;
+    --texto-principal: #2d3748;
+    --texto-suave: #718096;
+    --exito: #48bb78;
+    --borde-radio: 12px;
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* 2. RESET Y TIPOGRAFÍA */
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--gris-fondo);
+    color: var(--texto-principal);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* 3. LAYOUT DEL DASHBOARD */
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--azul-pizarra);
+    color: white;
+    transition: all 0.3s;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu {
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que el menú ocupe el espacio para empujar el logout al final */
+}
+
+.nav-item-custom {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+    font-size: 0.95rem;
+}
+
+.nav-item-custom:hover, .nav-item-custom.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 4px solid white;
+}
+
+/* Estilo para el botón de cerrar sesión en el sidebar */
+.nav-logout {
+    margin-top: auto; /* Empuja el botón al fondo */
+    color: #ff8a8a !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-logout:hover {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    color: #ff4d4d !important;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 2.5rem;
+    background-color: var(--gris-fondo);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.user-greeting {
+    font-weight: 600;
+    color: var(--azul-oscuro);
+    background: var(--blanco);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+/* 4. COMPONENTES ESTILO FIGMA (Cards) */
+.card-figma {
+    background: var(--blanco);
+    border-radius: var(--borde-radio);
+    border: none;
+    box-shadow: var(--sombra-suave);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* 5. TABLAS MODERNAS */
+.table-custom {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.table-custom thead th {
+    color: var(--texto-suave);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 1rem;
+}
+
+.table-custom td {
+    padding: 1rem;
+    background-color: white;
+    border-top: 1px solid #edf2f7;
+    border-bottom: 1px solid #edf2f7;
+}
+
+/* 6. BOTONES PERSONALIZADOS (Ajustados a Figma) */
+.btn-custom {
+    background-color: var(--azul-pizarra);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.btn-custom:hover {
+    background-color: var(--azul-oscuro);
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* 7. FORMULARIOS (Nuevas reglas para registrar_entrenamiento.php) */
+.form-container-sm {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.label-figma {
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--texto-suave);
+    margin-bottom: 8px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-control-figma {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.form-control-figma:focus {
+    border-color: var(--azul-pizarra);
+    box-shadow: 0 0 0 4px rgba(93, 109, 133, 0.1);
+    outline: none;
+}

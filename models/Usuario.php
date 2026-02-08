@@ -30,4 +30,11 @@ class Usuario {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function registrar($datos) {
+        $sql = "INSERT INTO usuarios (nombre, email, password, rol) 
+            VALUES (:nombre, :email, :password, :rol)";
+        $stmt = $this->conn->prepare($sql);
+    return $stmt->execute($datos);
+}
 }
